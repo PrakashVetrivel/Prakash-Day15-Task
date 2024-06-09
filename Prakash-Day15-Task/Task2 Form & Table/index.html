@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form and Table</title>
+  <style>
+    /* Add CSS styles here */
+    form {
+      margin-bottom: 10px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+    <script src="https://app.zenclass.in/sheets/vl/js/zen/suite/bundle.is"></script>
+  <form id="myForm">
+    <label for="firstName">First Name:</label><br>
+    <input type="text" id="firstName" required><br>
+    <label for="lastName">Last Name:</label><br>
+    <input type="text" id="lastName" required><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" required><br>
+    <label for="address">Address:</label><br>
+    <input type="text" id="address" required><br>
+    <label for="pincode">Pincode:</label><br>
+    <input type="text" id="pincode" required><br>
+    <label for="gender">Gender:</label><br>
+    <select id="gender" required><br>
+      <option value="Male">Male</option><br>
+      <option value="Female">Female</option>
+    </select><br><br>
+    <label>Choice of Food:</label><br>
+    <input type="radio" name="food" value="pizza"> Pizza<br>
+    <input type="radio" name="food" value="pasta"> Pasta<br>
+    <input type="radio" name="food" value="sushi"> Sushi<br>
+    <input type="radio" name="food" value="salad"> Salad<br>
+    <input type="radio" name="food" value="burger"> Burger<br>
+    <label for="state">State:</label><br>
+    <input type="text" id="state" required><br>
+    <label for="country">Country:</label><br>
+    <input type="text" id="country" required><br><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <table id="myTable">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Pincode</th>
+        <th>Gender</th>
+        <th>Food</th>
+        <th>State</th>
+        <th>Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Table body will be populated dynamically -->
+    </tbody>
+  </table>
+
+  <script>
+    // Add JavaScript code here
+    const form = document.getElementById('myForm');
+    const tableBody = document.querySelector('#myTable tbody');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const email = document.getElementById('email').value;
+      const address = document.getElementById('address').value;
+      const pincode = document.getElementById('pincode').value;
+      const gender = document.getElementById('gender').value;
+      const foodOptions = document.querySelectorAll('input[name="food"]:checked');
+      const foods = Array.from(foodOptions).map(option => option.value).join(', ');
+      const state = document.getElementById('state').value;
+      const country = document.getElementById('country').value;
+
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${firstName}</td>
+        <td>${lastName}</td>
+        <td>${email}</td>
+        <td>${address}</td>
+        <td>${pincode}</td>
+        <td>${gender}</td>
+        <td>${foods}</td>
+        <td>${state}</td>
+        <td>${country}</td>
+      `;
+      tableBody.appendChild(newRow);
+
+      form.reset();
+    });
+  </script>
+
+  <!-- Test Suite -->
+  <script>
+    // Test Suite
+    function test() {
+      const form = document.getElementById('myForm');
+      const firstNameInput = document.getElementById('firstName');
+      const lastNameInput = document.getElementById('lastName');
+      const emailInput = document.getElementById('email');
+      const addressInput = document.getElementById('address');
+      const pincodeInput = document.getElementById('pincode');
+      const genderInput = document.getElementById('gender');
+      const stateInput = document.getElementById('state');
+      const countryInput = document.getElementById('country');
+
+      // Verify table has one row
+      const tableRows = document.querySelectorAll('#myTable tbody tr');
+      if (tableRows.length !== 1) {
+        console.error('Test failed: Table row not appended');
+        return;
+      }
+
+    
+      }
+
+      console.log('All tests passed!');
+    
+
+    // Run tests
+    test();
+  </script>
+</body>
+</html>
